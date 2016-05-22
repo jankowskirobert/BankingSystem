@@ -1,6 +1,8 @@
 package banksystem.composite;
 
-public abstract class BankCommand implements OperationInfo
+import java.io.Serializable;
+
+public abstract class BankCommand implements OperationInfo, Serializable
 {
 
     private Bank b;

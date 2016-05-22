@@ -1,12 +1,13 @@
 package banksystem.customer;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * Created by init0 on 17.05.16.
  */
-public class CustomerPersonalInformation implements ConsoleDataInput {
+public class CustomerPersonalInformation implements ConsoleDataInput, Serializable {
     private String firstName;
     private String lastName;
     private int personalNo;

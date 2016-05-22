@@ -8,6 +8,9 @@ import banksystem.customer.CustomerAccount;
 import banksystem.customer.CustomerAddress;
 import banksystem.customer.CustomerPersonalInformation;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -28,6 +31,7 @@ public class UserShell {
             double v = g.nextDouble();
             if (accept(new Scanner(System.in))) {
                 b.dispatch(new Deposite(v, receiver, b));
+                saveToFile();
             } else
                 System.out.println("NO CHANGES");
         }catch (InputMismatchException e){
@@ -43,6 +47,7 @@ public class UserShell {
             double v = g.nextDouble();
             if (accept(new Scanner(System.in))) {
                 b.dispatch(new Withdraw(v, receiver, b));
+                saveToFile();
             } else
                 System.out.println("NO CHANGES");
         }catch (InputMismatchException e){
@@ -87,7 +92,30 @@ public class UserShell {
     }
 
     public void removeClient(Scanner g){
+        try {
+            System.out.println("Enter Client Number:");
+            long receiver = g.nextLong();
+            if (accept(new Scanner(System.in))) {
+                b.dispatch(new RemoveClient(receiver, b));
+                saveToFile();
+            } else
+                System.out.println("NO CHANGES");
+        }catch (InputMismatchException e){
+            System.err.println(e);
+        }
+    }
 
+    public void saveToFile(){
+        try {
+            FileOutputStream fos1 = new FileOutputStream("ser1.xml");
+            java.beans.XMLEncoder xe1 = new java.beans.XMLEncoder(fos1);
+            xe1.writeObject(b);
+            xe1.flush();
+            xe1.close();
+            System.out.printf("Serialized data is saved in employee.ser");
+        }catch (IOException e){
+            System.err.println(e);
+        }
     }
 
     public void makeTransaction(Scanner g){
@@ -100,6 +128,7 @@ public class UserShell {
             double v = g.nextDouble();
             if (accept(new Scanner(System.in))) {
                 b.dispatch(new Transaction(receiver, sender, v, b));
+                saveToFile();
             } else
                 System.out.println("NO CHANGES");
         }catch (InputMismatchException e){
@@ -120,7 +149,8 @@ public class UserShell {
             h = l;
             h.informationSetting(g);
             if (accept(new Scanner(System.in))) {
-                new CreateAccount(b, a, p, l).makeDecision();
+                b.dispatch(new CreateAccount(b, a, p, l));
+                saveToFile();
                 System.out.println("User Added");
             } else
                 System.out.println("NO CHANGES");
@@ -159,6 +189,7 @@ public class UserShell {
         con.addPosition(new Item("Withdraw", 8));
         con.addPosition(new Item("Print Clients", 3));
         con.addPosition(new Item("Search", 6));
+        con.addPosition(new Item("Remove", 9));
         con.addPosition(new Item("EXIT", -1));
         s.printMenu(con);
 
@@ -171,6 +202,7 @@ public class UserShell {
                     break;
                 case -1:
                     System.exit(1);
+                    s.saveToFile();
                     break;
                 case 2:
                     s.printMenu(con);
@@ -197,6 +229,11 @@ public class UserShell {
                     break;
                 case 8:
                     s.withdrawMoney(f);
+                    s.printMenu(con);
+                    break;
+                case 9:
+                    s.removeClient(f);
+                    s.saveToFile();
                     s.printMenu(con);
                     break;
                 default:

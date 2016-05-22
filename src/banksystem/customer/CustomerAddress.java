@@ -1,12 +1,13 @@
 package banksystem.customer;
 
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  * Created by init0 on 04.05.16.
  */
-public class CustomerAddress implements ConsoleDataInput {
+public class CustomerAddress implements ConsoleDataInput, Serializable {
 
     private String city;
     private String country;

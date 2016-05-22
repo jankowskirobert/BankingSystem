@@ -23,11 +23,6 @@ public class Bank implements Serializable {
         this.clients = clients;
     }
 
-/*
-    public Customer getClient(long clientID, CustomerAddress addrs, CustomerAccount acc){
-
-    }
-*/
     public void addToHistory(OperationInfo h){
         history.add(h);
     }
