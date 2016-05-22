@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_25" class="java.beans.XMLDecoder">
+ <object class="banksystem.composite.Bank" id="Bank0">
+  <void property="clients">
+   <void method="add">
+    <object class="banksystem.customer.Customer" id="Customer0">
+     <void property="account">
+      <void property="accountNo">
+       <long>344345</long>
+      </void>
+      <void property="balance">
+       <double>3.45345345E8</double>
+      </void>
+     </void>
+     <void property="address">
+      <void property="city">
+       <string>reteete</string>
+      </void>
+      <void property="country">
+       <string>dfgddd</string>
+      </void>
+      <void property="houseNumber">
+       <int>4535</int>
+      </void>
+      <void property="street">
+       <string>dfggd</string>
+      </void>
+      <void property="zipCode">
+       <int>534</int>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="banksystem.customer.Customer" id="Customer1">
+     <void property="account">
+      <void property="accountNo">
+       <long>3453453</long>
+      </void>
+      <void property="balance">
+       <double>77777.0</double>
+      </void>
+     </void>
+     <void property="address">
+      <void property="city">
+       <string>uuuuu</string>
+      </void>
+      <void property="country">
+       <string>jjjjj</string>
+      </void>
+      <void property="houseNumber">
+       <int>6</int>
+      </void>
+      <void property="street">
+       <string>nnnn</string>
+      </void>
+      <void property="zipCode">
+       <int>5</int>
+      </void>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
